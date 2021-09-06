@@ -42,3 +42,6 @@ runs:
     - ${{ inputs.namespace }}
     - ${{ inputs.registry-name }}
     - ${{ inputs.token }}
+    - ${{ inputs.recreate }}
+    - ${{ inputs.base_version }}
+    - ${{ inputs.autobump }}
