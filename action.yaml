@@ -1,0 +1,44 @@
+name: "Publish Terraform Modules"
+description: "Publish multiple terraform modules to terraform cloud module registry"
+author: "Pau Pous <paupous@gmail.com>"
+branding:
+  icon: "terminal"
+  color: "red"
+inputs:
+  modules_list:
+    description: "List of modules paths to push to the registry, e.g. ['./module-1','./module-2']"
+    required: true
+  provider:
+    description: "Specifies the Terraform provider that this module is used for. May contain alphanumeric characters. Maximum length is 64 characters."
+    required: true
+  namespace:
+    description: "The namespace of this module. The organization name for private modules. The namespace for public modules. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters."
+    required: true
+  registry-name:
+    description: "Indicates whether this is a publicly maintained module or private. Must be either public or private."
+    required: true
+    default: private
+  token:
+    description: "Bearer token to authenticate against the regsitry"
+    required: true
+  recreate:
+    description: "If the version exists will delete it and create it again"
+    required: false
+    default: "false"
+  base_version:
+    description: "Module version to use if the autobump is not enabled"
+    required: false
+    default: "1.0.0"
+  autobump:
+    description: "Autobump patch version"
+    required: false
+    default: "true"
+runs:
+  using: "docker"
+  image: "./Dockerfile"
+  args:
+    - ${{ inputs.path }}
+    - ${{ inputs.provider }}
+    - ${{ inputs.namespace }}
+    - ${{ inputs.registry-name }}
+    - ${{ inputs.token }}
