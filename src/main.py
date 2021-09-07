@@ -33,7 +33,7 @@ def main(config: Config) -> str:
         if not registry.module_exists(module_name, config.provider):
 
             print("The module selected does not exists.")
-            registry.create(module_name, config.provider, registry_name)
+            registry.create_module(module_name, config.provider, registry_name)
         else:
             print(f"Module {module_name} already exists.")
 
