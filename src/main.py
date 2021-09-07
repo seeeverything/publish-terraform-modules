@@ -4,6 +4,7 @@ import json
 import tarfile
 from models.module import Module
 import utils
+import copy
 
 from registry import Registry
 from config import Config
@@ -77,16 +78,16 @@ def bump_module_version(
 ) -> str:
     """Creates a new version for a module"""
 
-    new_version = base_version
+    new_version = copy(base_version)
 
     if not module.last_version is None and autobump_version:
         current_version = SemVer(version=module.last_version)
-        new_version = current_version
+        new_version = copy(current_version)
 
         new_version.bump_patch()
 
         Log.info(
-            f"Bumping module verison from {current_version.to_string()} -> {new_version.to_string()}."
+            f"Bumping module version from {current_version.to_string()} -> {new_version.to_string()}."
         )
     else:
         Log.warning(
