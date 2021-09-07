@@ -21,7 +21,7 @@ class Registry:
 
     def _parse_response(self, response: Response) -> bool:
         if response.status_code == 404:
-            Log.error("Not found or user unauthorized to perform action")
+            Log.warning("Not found or user unauthorized to perform action")
         elif response.status_code == 403:
             Log.error("Forbidden - public module curation disabled")
         elif response.status_code == 401:
