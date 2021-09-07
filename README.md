@@ -42,8 +42,8 @@ This GitHub action publishes modules to a Terraform Registry by interacting with
 
 The following example will:
 - Check out a repository
-- Get the root folders for the files change in the current commit
-- Publish a new version for each folder (as a terraform module)
+- Get the root folders for the files modified in the current commit
+- Publish a new version for each folder as a terraform module
 
 ```
 name: publish-modules
