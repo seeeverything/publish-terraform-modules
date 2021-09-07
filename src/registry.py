@@ -29,8 +29,8 @@ class Registry:
         elif response.status_code in [200, 201, 204]:
             return True
 
-        Log.debug(response.status_code)
-        Log.debug(response.content)
+        Log.error(response.status_code)
+        Log.error(response.content)
 
         return False
 

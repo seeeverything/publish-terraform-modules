@@ -4,7 +4,7 @@ import sys
 class Log:
     @classmethod
     def info(self, message: str) -> None:
-        print(f"{message}")
+        print(f"::info::{message}")
 
     @classmethod
     def debug(self, message: str) -> None:
