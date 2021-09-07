@@ -37,7 +37,7 @@ runs:
   using: "docker"
   image: "./Dockerfile"
   args:
-    - ${{ inputs.path }}
+    - ${{ inputs.modules_list }}
     - ${{ inputs.provider }}
     - ${{ inputs.namespace }}
     - ${{ inputs.registry-name }}
