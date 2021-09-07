@@ -77,18 +77,16 @@ def bump_module_version(
 ) -> str:
     """Creates a new version for a module"""
 
-    new_version = SemVer(base_version)
-
     if not module.last_version is None and autobump_version:
         new_version = SemVer(version=module.last_version).bump_patch()
 
         Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
+        return new_version
     else:
         Log.warning(
-            f"Module has no version or autobump not enabeld. Base version {new_version} will be used."
+            f"Module has no version or autobump not enabeld. Base version {base_version} will be used."
         )
-
-    return new_version
+        return base_version
 
 
 def package_module(module_name: str, module_dir: str) -> str:
