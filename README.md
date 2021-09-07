@@ -78,7 +78,7 @@ jobs:
 
       - name: publish
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-        uses: seeeverything/publish-terraform-modules@master
+        uses: seeeverything/publish-terraform-modules@1.0.0
         with:
           modules_list: ${{ steps.get-files-changed.outputs.FOLDERS_LIST }}
           provider: "aws"
