@@ -19,6 +19,8 @@ def main(config: Config) -> str:
 
     for module_folder in config.modules_list:
 
+        module_folder = os.path.join(WORKDIR, module_folder)
+
         if not validate(module_folder):
             Log.error(f"Module folder {module_folder} is not a valid terraform module.")
             Log.end_group()

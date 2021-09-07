@@ -1,4 +1,3 @@
 #!/bin/sh
 
-ls -la
-python3 main.py ${*}
+python3 /main.py ${*}
