@@ -13,7 +13,7 @@ class Log:
     @classmethod
     def error(self, message: str) -> None:
         print(f"::error::{message}")
-        sys.exit()
+        sys.exit(1)
 
     @classmethod
     def warning(self, message: str) -> None:
