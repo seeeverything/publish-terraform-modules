@@ -41,9 +41,7 @@ def main(config: Config) -> str:
 
         new_version = bump_module_version(
             module,
-            SemVer(
-                base_version,
-            ),
+            base_version,
             config.autobump_version,
         )
 
