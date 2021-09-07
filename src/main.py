@@ -22,7 +22,9 @@ def main(config: Config) -> str:
         module_folder = os.path.join(WORKDIR, module_folder)
 
         if not validate(module_folder):
-            Log.error(f"Module folder {module_folder} is not a valid terraform module.")
+            Log.warning(
+                f"Module folder {module_folder} is not a valid terraform module."
+            )
             Log.end_group()
             continue
 
@@ -32,10 +34,10 @@ def main(config: Config) -> str:
 
         if not registry.module_exists(module_name, config.provider):
 
-            print("The module selected does not exists.")
+            Log.info("The module selected does not exists.")
             registry.create_module(module_name, config.provider, registry_name)
         else:
-            print(f"Module {module_name} already exists.")
+            Log.info(f"Module {module_name} already exists.")
 
         module = registry.get_module(module_name, config.provider)
 
