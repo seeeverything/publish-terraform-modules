@@ -20,4 +20,6 @@ class Config:
     token: str
     registry_name: str = "private"
     recreate: bool = False
-    autobump_version: bool = False
+    autobump_version: bool = False    
+    bump_major: bool = False
+    bump_minor: bool = False
