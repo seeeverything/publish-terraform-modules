@@ -82,7 +82,7 @@ def bump_module_version(
 
         Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
         return new_version
-    if not module.last_version is None and module.bump_minor:
+    elif not module.last_version is None and module.bump_minor:
         new_version = SemVer(version=module.last_version).bump_minor()
 
         Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
