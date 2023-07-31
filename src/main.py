@@ -77,11 +77,21 @@ def bump_module_version(
 ) -> str:
     """Creates a new version for a module"""
 
-    if not module.last_version is None and autobump_version:
-        new_version = SemVer(version=module.last_version).bump_patch()
+    if not module.last_version is None and module.bump_major:
+        new_version = SemVer(version=module.last_version).bump_major()
 
         Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
         return new_version
+    if not module.last_version is None and module.bump_minor:
+        new_version = SemVer(version=module.last_version).bump_minor()
+
+        Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
+        return new_version        
+    elif not module.last_version is None and autobump_version:
+        new_version = SemVer(version=module.last_version).bump_patch()
+
+        Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
+        return new_version    
     else:
         Log.warning(
             f"Module has no version or autobump not enabeld. Base version {base_version} will be used."
@@ -122,6 +132,8 @@ if __name__ == "__main__":
     recreate = sys.argv[6]
     base_version = sys.argv[7]
     autobump_version = sys.argv[8]
+    bump_major = sys.argv[9]
+    bump_minor = sys.argv[10]
 
     config = Config(
         modules_list=json.loads(modules_list),
@@ -132,6 +144,8 @@ if __name__ == "__main__":
         registry_name=registry_name,
         autobump_version=utils.str_to_bool(autobump_version, False),
         recreate=utils.str_to_bool(recreate, False),
+        bump_major=utils.str_to_bool(bump_major, False),
+        bump_minor=utils.str_to_bool(bump_minor, False),
     )
 
     main(config)

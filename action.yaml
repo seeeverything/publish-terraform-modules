@@ -33,6 +33,14 @@ inputs:
     description: "Autobump patch version"
     required: false
     default: "true"
+  bump_major:
+    description: "Autobump major version"
+    required: false
+    default: "false"
+  bump_minor:
+    description: "Autobump minor version"
+    required: false
+    default: "false"    
 runs:
   using: "docker"
   image: "./Dockerfile"
@@ -45,3 +53,5 @@ runs:
     - ${{ inputs.recreate }}
     - ${{ inputs.base_version }}
     - ${{ inputs.autobump }}
+    - ${{ inputs.bump_major }}
+    - ${{ inputs.bump_minor }}
