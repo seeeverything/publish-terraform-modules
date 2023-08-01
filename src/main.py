@@ -45,6 +45,8 @@ def main(config: Config) -> str:
             module,
             base_version,
             config.autobump_version,
+            config.bump_major,
+            config.bump_minor
         )
 
         if module.has_version(new_version):
