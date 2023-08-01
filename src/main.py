@@ -73,25 +73,26 @@ def main(config: Config) -> str:
 
 
 def bump_module_version(
-    module: Module, base_version: str, autobump_version: bool
+    module: Module, base_version: str, autobump_version: bool, bump_major: bool, bump_minor: bool
 ) -> str:
     """Creates a new version for a module"""
 
-    if not module.last_version is None and module.bump_major:
-        new_version = SemVer(version=module.last_version).bump_major()
+    if not module.last_version is None and autobump_version:
+      if bump_major:
+          new_version = SemVer(version=module.last_version).bump_major()
 
-        Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
-        return new_version
-    elif not module.last_version is None and module.bump_minor:
-        new_version = SemVer(version=module.last_version).bump_minor()
+          Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
+          return new_version
+      elif bump_minor:
+          new_version = SemVer(version=module.last_version).bump_minor()
+          
+          Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
+          return new_version        
+      else:
+          new_version = SemVer(version=module.last_version).bump_patch()
 
-        Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
-        return new_version        
-    elif not module.last_version is None and autobump_version:
-        new_version = SemVer(version=module.last_version).bump_patch()
-
-        Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
-        return new_version    
+          Log.info(f"Bumping module version from {module.last_version} -> {new_version}.")
+          return new_version    
     else:
         Log.warning(
             f"Module has no version or autobump not enabeld. Base version {base_version} will be used."

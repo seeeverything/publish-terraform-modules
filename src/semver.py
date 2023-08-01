@@ -26,7 +26,7 @@ class SemVer:
         
         return self.to_string()
 
-    def bump_major(self) -> str:
+    def bump_minor(self) -> str:
         self.minor += 1
         self.patch = 0
 
